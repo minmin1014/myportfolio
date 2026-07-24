@@ -1,8 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  AnimatePresence,
+  motion,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+} from "motion/react";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { works } from "@/data/works";
 import Reveal from "./Reveal";
@@ -19,6 +25,24 @@ export default function Works({ dict }: { dict: Dictionary }) {
 
   const count = works.length;
   const open = openIndex !== null;
+
+  // Scroll-linked parallax for the background banner and watermark.
+  const sectionRef = useRef<HTMLElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const bgY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    prefersReducedMotion ? ["0%", "0%"] : ["-10%", "10%"],
+  );
+  const watermarkY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    prefersReducedMotion ? [0, 0] : [60, -60],
+  );
 
   // Auto-rotate the background banner, unless paused (hover/focus) or a modal is open.
   useEffect(() => {
@@ -56,39 +80,46 @@ export default function Works({ dict }: { dict: Dictionary }) {
 
   return (
     <section
+      ref={sectionRef}
       id="works"
       className="relative overflow-hidden border-t border-[var(--color-border)] bg-[var(--color-bg)]"
     >
-      {/* Background banner — crossfades with the active work */}
+      {/* Background banner — crossfades with the active work, drifts on scroll */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        {works.map((work, i) => (
-          <div
-            key={work.id}
-            className="absolute inset-0 transition-opacity duration-[1200ms] ease-[var(--ease-fluid)]"
-            style={{ opacity: i === active ? 1 : 0 }}
-          >
-            <Image
-              src={work.image}
-              alt=""
-              fill
-              priority={i === 0}
-              sizes="100vw"
-              className="scale-105 object-cover"
-            />
-          </div>
-        ))}
+        <motion.div
+          style={{ y: bgY }}
+          className="absolute inset-x-0 -top-[15%] h-[130%]"
+        >
+          {works.map((work, i) => (
+            <div
+              key={work.id}
+              className="absolute inset-0 transition-opacity duration-[1200ms] ease-[var(--ease-fluid)]"
+              style={{ opacity: i === active ? 1 : 0 }}
+            >
+              <Image
+                src={work.image}
+                alt=""
+                fill
+                priority={i === 0}
+                sizes="100vw"
+                className="scale-110 object-cover"
+              />
+            </div>
+          ))}
+        </motion.div>
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-bg)]/85 via-[var(--color-bg)]/70 to-[var(--color-bg)]/95" />
         <div className="absolute inset-0 bg-[var(--color-bg)]/30" />
       </div>
 
       <div className="relative mx-auto max-w-[100rem] px-5 py-28 sm:px-10 sm:py-36 lg:px-16">
         {/* Giant watermark echoing the section title */}
-        <span
+        <motion.span
           aria-hidden
+          style={{ y: watermarkY }}
           className="pointer-events-none absolute -top-4 left-3 select-none text-[22vw] font-bold leading-none tracking-tight text-[var(--color-text)]/[0.04] sm:text-[16rem]"
         >
           WORKS
-        </span>
+        </motion.span>
 
         <div className="relative">
           <Reveal>
