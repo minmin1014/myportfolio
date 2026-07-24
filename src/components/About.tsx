@@ -24,15 +24,15 @@ export default function About({ dict }: { dict: Dictionary }) {
         </h2>
       </Reveal>
 
-      <div className="mt-12 grid max-w-6xl grid-cols-1 items-center gap-12 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:gap-16">
-        <Reveal>
-          <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-card)]">
+      <div className="mt-12 grid max-w-[82rem] grid-cols-1 gap-10 md:grid-cols-[minmax(0,360px)_minmax(0,1fr)] md:gap-14">
+        <Reveal className="md:h-full">
+          <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-card)] md:mx-0 md:aspect-auto md:h-full md:min-h-[26rem] md:max-w-none">
             <Parallax distance={48} className="absolute inset-x-0 -inset-y-[10%]">
               <Image
                 src="/images/about/profile-v2.jpg"
                 alt={dict.about.imageAlt}
                 fill
-                sizes="(min-width: 768px) 380px, 80vw"
+                sizes="(min-width: 768px) 360px, 80vw"
                 className="object-cover"
               />
             </Parallax>
