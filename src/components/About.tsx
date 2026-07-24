@@ -42,7 +42,7 @@ export default function About({ dict }: { dict: Dictionary }) {
         <div className="space-y-5">
           {dict.about.paragraphs.map((paragraph, i) => (
             <Reveal key={i} delay={0.1 + i * 0.05}>
-              <p className="whitespace-pre-line leading-[1.9] text-[var(--color-text-muted)]">
+              <p className="whitespace-pre-line leading-[1.9] text-[var(--color-text-muted)] [word-break:auto-phrase]">
                 {paragraph}
               </p>
             </Reveal>
@@ -51,15 +51,15 @@ export default function About({ dict }: { dict: Dictionary }) {
       </div>
 
       {/* Poetic closing — centered and emphasized, set apart from the prose */}
-      <div className="mt-20 flex flex-col items-center gap-12 text-center sm:mt-28">
+      <div className="mt-20 flex flex-col items-center gap-16 text-center sm:mt-28">
         {dict.about.closing.map((stanza, i) => (
           <Reveal key={stanza.word} delay={0.05 * i}>
-            <p className="text-3xl font-semibold tracking-tight text-[var(--color-text)] sm:text-4xl">
+            <p className="text-4xl font-semibold tracking-tight text-[var(--color-text)] sm:text-6xl">
               <span className="relative inline-block">
                 {stanza.word}
                 <span
                   aria-hidden
-                  className="absolute inset-x-0 -bottom-1.5 h-[0.28em] rounded-full"
+                  className="absolute inset-x-0 -bottom-2 h-[0.26em] rounded-full"
                   style={{
                     backgroundColor: HIGHLIGHT[stanza.accent] ?? "var(--color-accent)",
                     opacity: 0.6,
@@ -67,7 +67,7 @@ export default function About({ dict }: { dict: Dictionary }) {
                 />
               </span>
             </p>
-            <p className="mt-5 text-[var(--color-text-muted)] sm:text-lg">
+            <p className="mt-7 text-lg text-[var(--color-text-muted)] [word-break:auto-phrase] sm:text-2xl">
               {stanza.line}
             </p>
           </Reveal>
