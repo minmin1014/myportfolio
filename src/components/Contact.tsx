@@ -72,9 +72,10 @@ export default function Contact({ dict }: { dict: Dictionary }) {
   return (
     <section
       id="contact"
-      className="border-t border-[var(--color-border)] bg-[var(--color-bg-elevated)] px-5 py-28 sm:px-8 sm:py-36"
+      className="border-t border-[var(--color-border)] bg-[var(--color-bg-elevated)] px-5 py-28 sm:px-10 sm:py-36 lg:px-16"
     >
-      <div className="mx-auto max-w-2xl">
+      <div className="mx-auto max-w-[100rem]">
+        <div className="max-w-2xl">
         <Reveal>
           <p className="text-xs font-medium tracking-[0.3em] text-[var(--color-accent)]">
             {dict.contact.eyebrow}
@@ -210,6 +211,7 @@ export default function Contact({ dict }: { dict: Dictionary }) {
             )}
           </form>
         </Reveal>
+        </div>
       </div>
     </section>
   );

@@ -35,7 +35,7 @@ export default function Skills({ dict }: { dict: Dictionary }) {
   return (
     <section
       id="skills"
-      className="mx-auto max-w-6xl px-5 py-28 sm:px-8 sm:py-36"
+      className="mx-auto max-w-[100rem] px-5 py-28 sm:px-10 sm:py-36 lg:px-16"
     >
       <Reveal>
         <p className="text-xs font-medium tracking-[0.3em] text-[var(--color-accent)]">
@@ -48,7 +48,7 @@ export default function Skills({ dict }: { dict: Dictionary }) {
         </h2>
       </Reveal>
 
-      <div className="mt-12 space-y-12">
+      <div className="mt-12 max-w-5xl space-y-12">
         <SkillGroup
           heading={dict.skills.programmingHeading}
           items={skills}
