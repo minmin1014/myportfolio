@@ -24,9 +24,23 @@
     "eyebrow": "ABOUT",
     "heading": "About",
     "paragraphs": [
-      "Alongside studying computer science at Kwansei Gakuin University, I've thrown myself into choral music as a member of the Kwansei Gakuin Glee Club.",
-      "As an engineer, I design and build web applications, and own business systems end-to-end — from development through ongoing maintenance. As a choral singer, I've served as a part leader and head of the club's IT/systems department, supporting both performance and organizational operations.",
-      "Engineering is built by stacking logic; ensemble singing is built by layering voices. Two crafts that rarely meet on paper — but to me they're the same continuous act: bringing individual strengths together into a single, coherent whole."
+      "Nice to meet you.\nI'm Takumi Ishii.",
+      "Born in 2003 and raised in the Kansai region, I study Computer Science at Kwansei Gakuin University while singing with the Kwansei Gakuin Glee Club — Japan's oldest male-voice choir — where I've thrown myself wholeheartedly into choral music.",
+      "I began singing in junior high and have been involved as both a performer and a coach. Getting through the harsh restrictions of the pandemic and devoting four university years to song was an irreplaceable part of my youth. In the club I served as part leader and head of the IT department, supporting the group through both performance and organizational management. Though I'm an alumnus now, I keep singing quietly while supporting the younger members.",
+      "At the same time, I've kept honing my craft in computer science. In high school, when the pandemic made it impossible to hold the culture festival's on-site stage, I planned and designed a live online broadcast and produced videos so that as many people as possible could still enjoy it. At university, I've continued to deliver solutions across many environments and approaches, coexisting and thriving alongside AI.",
+      "Layering voices in an ensemble, and stacking logic in engineering. Two pursuits that seem never to meet — yet in drawing on individual strengths to build a single whole, they are, to me, one continuous act."
+    ],
+    "closing": [
+      {
+        "word": "Sing",
+        "line": "To give feelings without an outline the shape of a voice.",
+        "accent": "sing"
+      },
+      {
+        "word": "Create",
+        "line": "To give the skills and knowledge I hold the meaning of a solution.",
+        "accent": "create"
+      }
     ],
     "imageAlt": "Portrait photo of Takumi Ishii"
   },

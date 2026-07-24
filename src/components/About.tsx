@@ -42,14 +42,43 @@ export default function About({ dict }: { dict: Dictionary }) {
         <div className="space-y-5">
           {dict.about.paragraphs.map((paragraph, i) => (
             <Reveal key={i} delay={0.1 + i * 0.05}>
-              <p className="text-balance leading-[1.85] text-[var(--color-text-muted)]">
+              <p className="whitespace-pre-line leading-[1.9] text-[var(--color-text-muted)]">
                 {paragraph}
               </p>
             </Reveal>
           ))}
         </div>
       </div>
+
+      {/* Poetic closing — centered and emphasized, set apart from the prose */}
+      <div className="mt-20 flex flex-col items-center gap-12 text-center sm:mt-28">
+        {dict.about.closing.map((stanza, i) => (
+          <Reveal key={stanza.word} delay={0.05 * i}>
+            <p className="text-3xl font-semibold tracking-tight text-[var(--color-text)] sm:text-4xl">
+              <span className="relative inline-block">
+                {stanza.word}
+                <span
+                  aria-hidden
+                  className="absolute inset-x-0 -bottom-1.5 h-[0.28em] rounded-full"
+                  style={{
+                    backgroundColor: HIGHLIGHT[stanza.accent] ?? "var(--color-accent)",
+                    opacity: 0.6,
+                  }}
+                />
+              </span>
+            </p>
+            <p className="mt-5 text-[var(--color-text-muted)] sm:text-lg">
+              {stanza.line}
+            </p>
+          </Reveal>
+        ))}
+      </div>
       </div>
     </section>
   );
 }
+
+const HIGHLIGHT: Record<string, string> = {
+  sing: "#9b8cff",
+  create: "#4fd6c2",
+};
