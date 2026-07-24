@@ -43,7 +43,7 @@ export default function About({ dict }: { dict: Dictionary }) {
           {dict.about.paragraphs.map((paragraph, i) => (
             <Reveal key={i} delay={0.1 + i * 0.05}>
               <p className="whitespace-pre-line leading-[1.9] text-[var(--color-text-muted)] [word-break:auto-phrase]">
-                {paragraph}
+                {renderProse(paragraph)}
               </p>
             </Reveal>
           ))}
@@ -82,3 +82,27 @@ const HIGHLIGHT: Record<string, string> = {
   sing: "#f5c451",
   create: "#5aa2ff",
 };
+
+// Compound terms and proper nouns that must never break across lines.
+const NO_BREAK = [
+  "情報システム部門長",
+  "関西学院グリークラブ",
+  "関西学院大学",
+  "コンピューターサイエンス",
+  "パートリーダー",
+  "男声合唱団",
+];
+
+const NO_BREAK_RE = new RegExp(`(${NO_BREAK.join("|")})`, "g");
+
+function renderProse(text: string) {
+  return text.split(NO_BREAK_RE).map((part, i) =>
+    NO_BREAK.includes(part) ? (
+      <span key={i} className="whitespace-nowrap">
+        {part}
+      </span>
+    ) : (
+      part
+    ),
+  );
+}

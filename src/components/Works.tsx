@@ -69,7 +69,16 @@ export default function Works({ dict }: { dict: Dictionary }) {
     const el = trackRef.current;
     if (!el || el.scrollWidth <= el.clientWidth) return; // only when scrollable
     const child = el.children[i] as HTMLElement | undefined;
-    child?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    if (!child) return;
+    // Scroll only the carousel's own scrollLeft. Using scrollIntoView here would
+    // also scroll the page vertically back to this section on every auto-advance.
+    const elRect = el.getBoundingClientRect();
+    const childRect = child.getBoundingClientRect();
+    const target =
+      el.scrollLeft +
+      (childRect.left - elRect.left) -
+      (el.clientWidth - childRect.width) / 2;
+    el.scrollTo({ left: target, behavior: "smooth" });
   }, []);
 
   const handleTrackScroll = useCallback(() => {
