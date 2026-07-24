@@ -40,19 +40,6 @@ export default function Works({ dict }: { dict: Dictionary }) {
     prefersReducedMotion ? ["0%", "0%"] : ["-10%", "10%"],
   );
 
-  // Auto-rotate the background banner, unless paused (hover/focus) or a modal is
-  // open. On phones the carousel is swipe-driven, so auto-rotation is disabled.
-  useEffect(() => {
-    if (paused || open) return;
-    if (typeof window === "undefined") return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    if (!window.matchMedia("(min-width: 640px)").matches) return;
-    const id = window.setInterval(() => {
-      setActive((a) => (a + 1) % count);
-    }, ROTATE_MS);
-    return () => window.clearInterval(id);
-  }, [paused, open, count]);
-
   const closeModal = useCallback(() => setOpenIndex(null), []);
 
   // Modal: lock body scroll and close on Escape.
@@ -73,6 +60,10 @@ export default function Works({ dict }: { dict: Dictionary }) {
   // Mobile carousel: swiping horizontally drives the active banner.
   const trackRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
+  const activeRef = useRef(active);
+  useEffect(() => {
+    activeRef.current = active;
+  }, [active]);
 
   const scrollToIndex = useCallback((i: number) => {
     const el = trackRef.current;
@@ -108,6 +99,24 @@ export default function Works({ dict }: { dict: Dictionary }) {
     },
     [],
   );
+
+  // Auto-rotate the banner, looping back to the first item. Paused on hover/focus
+  // or while a modal is open. On phones this scrolls the carousel (which in turn
+  // updates the active banner); on larger screens it crossfades the background.
+  useEffect(() => {
+    if (paused || open) return;
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = window.setInterval(() => {
+      const next = (activeRef.current + 1) % count;
+      if (window.matchMedia("(min-width: 640px)").matches) {
+        setActive(next);
+      } else {
+        scrollToIndex(next);
+      }
+    }, ROTATE_MS);
+    return () => window.clearInterval(id);
+  }, [paused, open, count, scrollToIndex]);
 
   const activeCopy = dict.works.items[works[active].id];
 
