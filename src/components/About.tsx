@@ -79,6 +79,6 @@ export default function About({ dict }: { dict: Dictionary }) {
 }
 
 const HIGHLIGHT: Record<string, string> = {
-  sing: "#9b8cff",
-  create: "#4fd6c2",
+  sing: "#f5c451",
+  create: "#5aa2ff",
 };
