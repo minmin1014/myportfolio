@@ -1,6 +1,7 @@
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { skills } from "@/data/skills";
 import Reveal from "./Reveal";
+import Watermark from "./Watermark";
 
 function SkillGroup({
   heading,
@@ -35,8 +36,11 @@ export default function Skills({ dict }: { dict: Dictionary }) {
   return (
     <section
       id="skills"
-      className="mx-auto max-w-[100rem] px-5 py-28 sm:px-10 sm:py-36 lg:px-16"
+      className="relative overflow-hidden mx-auto max-w-[100rem] px-5 py-28 sm:px-10 sm:py-36 lg:px-16"
     >
+      <Watermark text={dict.skills.eyebrow} />
+
+      <div className="relative">
       <Reveal>
         <p className="text-xs font-medium tracking-[0.3em] text-[var(--color-accent)]">
           {dict.skills.eyebrow}
@@ -64,6 +68,7 @@ export default function Skills({ dict }: { dict: Dictionary }) {
           items={dict.skills.choralItems}
           delayOffset={0.2}
         />
+      </div>
       </div>
     </section>
   );

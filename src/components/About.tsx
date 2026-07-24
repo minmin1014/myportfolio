@@ -2,13 +2,17 @@ import Image from "next/image";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import Reveal from "./Reveal";
 import Parallax from "./Parallax";
+import Watermark from "./Watermark";
 
 export default function About({ dict }: { dict: Dictionary }) {
   return (
     <section
       id="about"
-      className="mx-auto max-w-[100rem] px-5 py-28 sm:px-10 sm:py-36 lg:px-16"
+      className="relative overflow-hidden mx-auto max-w-[100rem] px-5 py-28 sm:px-10 sm:py-36 lg:px-16"
     >
+      <Watermark text={dict.about.eyebrow} />
+
+      <div className="relative">
       <Reveal>
         <p className="text-xs font-medium tracking-[0.3em] text-[var(--color-accent)]">
           {dict.about.eyebrow}
@@ -44,6 +48,7 @@ export default function About({ dict }: { dict: Dictionary }) {
             </Reveal>
           ))}
         </div>
+      </div>
       </div>
     </section>
   );

@@ -3,6 +3,8 @@
 import { useState, type FormEvent } from "react";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import Reveal from "./Reveal";
+import Watermark from "./Watermark";
+import ObfuscatedEmail from "./ObfuscatedEmail";
 
 type Status = "idle" | "submitting" | "success" | "error" | "rate_limited";
 
@@ -72,28 +74,39 @@ export default function Contact({ dict }: { dict: Dictionary }) {
   return (
     <section
       id="contact"
-      className="border-t border-[var(--color-border)] bg-[var(--color-bg-elevated)] px-5 py-28 sm:px-10 sm:py-36 lg:px-16"
+      className="relative overflow-hidden border-t border-[var(--color-border)] bg-[var(--color-bg-elevated)] px-5 py-28 sm:px-10 sm:py-36 lg:px-16"
     >
-      <div className="mx-auto max-w-[100rem]">
-        <div className="max-w-2xl">
-        <Reveal>
-          <p className="text-xs font-medium tracking-[0.3em] text-[var(--color-accent)]">
-            {dict.contact.eyebrow}
-          </p>
-        </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="mt-3 text-3xl font-semibold tracking-[-0.02em] text-[var(--color-text)] sm:text-4xl">
-            {dict.contact.heading}
-          </h2>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <p className="mt-4 text-[var(--color-text-muted)]">
-            {dict.contact.description}
-          </p>
-        </Reveal>
+      <div className="relative mx-auto max-w-[100rem]">
+        <Watermark text={dict.contact.eyebrow} />
+        <div className="relative grid gap-14 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] lg:items-start lg:gap-16">
+          <div className="max-w-xl">
+            <Reveal>
+              <p className="text-xs font-medium tracking-[0.3em] text-[var(--color-accent)]">
+                {dict.contact.eyebrow}
+              </p>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.02em] text-[var(--color-text)] sm:text-4xl">
+                {dict.contact.heading}
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="mt-4 text-[var(--color-text-muted)]">
+                {dict.contact.description}
+              </p>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <div className="mt-10 border-t border-[var(--color-border)] pt-8">
+                <p className="text-xs font-medium tracking-[0.2em] text-[var(--color-text-faint)]">
+                  {dict.footer.emailLabel}
+                </p>
+                <ObfuscatedEmail className="mt-3 inline-block text-lg font-medium text-[var(--color-text)] transition-colors duration-200 hover:text-[var(--color-accent)]" />
+              </div>
+            </Reveal>
+          </div>
 
-        <Reveal delay={0.15}>
-          <form onSubmit={handleSubmit} className="mt-10 space-y-6" noValidate>
+          <Reveal delay={0.15} className="w-full lg:max-w-2xl lg:justify-self-end">
+            <form onSubmit={handleSubmit} className="space-y-6" noValidate>
             <div
               aria-hidden="true"
               className="pointer-events-none absolute -left-[9999px] h-px w-px overflow-hidden opacity-0"
