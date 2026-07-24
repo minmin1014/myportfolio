@@ -40,15 +40,13 @@ export default function Works({ dict }: { dict: Dictionary }) {
     prefersReducedMotion ? ["0%", "0%"] : ["-10%", "10%"],
   );
 
-  // Auto-rotate the background banner, unless paused (hover/focus) or a modal is open.
+  // Auto-rotate the background banner, unless paused (hover/focus) or a modal is
+  // open. On phones the carousel is swipe-driven, so auto-rotation is disabled.
   useEffect(() => {
     if (paused || open) return;
-    if (
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      return;
-    }
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!window.matchMedia("(min-width: 640px)").matches) return;
     const id = window.setInterval(() => {
       setActive((a) => (a + 1) % count);
     }, ROTATE_MS);
@@ -71,6 +69,45 @@ export default function Works({ dict }: { dict: Dictionary }) {
       document.body.style.overflow = prevOverflow;
     };
   }, [open, closeModal]);
+
+  // Mobile carousel: swiping horizontally drives the active banner.
+  const trackRef = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number | null>(null);
+
+  const scrollToIndex = useCallback((i: number) => {
+    const el = trackRef.current;
+    if (!el || el.scrollWidth <= el.clientWidth) return; // only when scrollable
+    const child = el.children[i] as HTMLElement | undefined;
+    child?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+  }, []);
+
+  const handleTrackScroll = useCallback(() => {
+    if (rafRef.current !== null) return;
+    rafRef.current = window.requestAnimationFrame(() => {
+      rafRef.current = null;
+      const el = trackRef.current;
+      if (!el || el.scrollWidth <= el.clientWidth) return;
+      const center = el.getBoundingClientRect().left + el.clientWidth / 2;
+      let closest = 0;
+      let min = Infinity;
+      Array.from(el.children).forEach((child, i) => {
+        const r = (child as HTMLElement).getBoundingClientRect();
+        const d = Math.abs(r.left + r.width / 2 - center);
+        if (d < min) {
+          min = d;
+          closest = i;
+        }
+      });
+      setActive(closest);
+    });
+  }, []);
+
+  useEffect(
+    () => () => {
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    },
+    [],
+  );
 
   const activeCopy = dict.works.items[works[active].id];
 
@@ -139,8 +176,12 @@ export default function Works({ dict }: { dict: Dictionary }) {
             </AnimatePresence>
           </div>
 
-          {/* Scattered thumbnails */}
-          <div className="mt-16 grid grid-cols-2 gap-x-6 gap-y-12 sm:gap-x-10 lg:grid-cols-4 lg:items-start lg:gap-x-14">
+          {/* Scattered thumbnails — a swipe carousel on phones, a grid from sm up */}
+          <div
+            ref={trackRef}
+            onScroll={handleTrackScroll}
+            className="mt-16 -mx-5 flex items-start snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-5 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-x-10 sm:gap-y-12 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4 lg:gap-x-14"
+          >
             {works.map((work, i) => {
               const copy = dict.works.items[work.id];
               const isActive = i === active;
@@ -148,7 +189,7 @@ export default function Works({ dict }: { dict: Dictionary }) {
                 <Reveal
                   key={work.id}
                   delay={0.05 * i}
-                  className={OFFSETS[i % OFFSETS.length]}
+                  className={`w-[80%] shrink-0 snap-center sm:w-auto sm:shrink ${OFFSETS[i % OFFSETS.length]}`}
                 >
                   <button
                     type="button"
@@ -203,6 +244,7 @@ export default function Works({ dict }: { dict: Dictionary }) {
                 onClick={() => {
                   setActive(i);
                   setPaused(true);
+                  scrollToIndex(i);
                 }}
                 aria-label={`${dict.works.items[work.id].title}`}
                 aria-current={i === active}
