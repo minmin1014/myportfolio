@@ -1,0 +1,111 @@
+{
+  "meta": {
+    "title": "石井拓実 | Takumi Ishii — Portfolio",
+    "description": "石井拓実（Takumi Ishii）のポートフォリオサイト。エンジニアとして、合唱人として。ソフトウェア開発の実績と、合唱活動における受賞歴・制作実績を紹介します。",
+    "ogAlt": "石井拓実 Takumi Ishii ポートフォリオ"
+  },
+  "nav": {
+    "home": "HOME",
+    "about": "ABOUT",
+    "works": "WORKS",
+    "skills": "SKILLS",
+    "contact": "CONTACT",
+    "menuOpen": "メニューを開く",
+    "menuClose": "メニューを閉じる",
+    "langSwitch": "English に切り替え"
+  },
+  "hero": {
+    "name": "石井拓実",
+    "nameEn": "Takumi Ishii",
+    "catchphrase": "エンジニアとして。合唱人として。",
+    "scrollHint": "SCROLL"
+  },
+  "about": {
+    "eyebrow": "ABOUT",
+    "heading": "自己紹介",
+    "paragraphs": [
+      "関西学院大学でコンピュータサイエンスを学ぶかたわら、関西学院グリークラブに所属し、合唱活動に打ち込んできました。",
+      "エンジニアとしては、Webアプリケーションの設計・開発を中心に、業務システムの構築から保守運用までを一貫して担当しています。合唱人としては、パートリーダーおよび情報システム部門長として、演奏活動と組織運営の両面から団を支えてきました。",
+      "論理を積み上げるエンジニアリングと、声を重ねるアンサンブル。一見交わらないふたつの営みですが、個々の力を活かしながら全体として一つのものをつくり上げるという点で、私の中では地続きの活動です。"
+    ],
+    "imageAlt": "石井拓実のプロフィール写真"
+  },
+  "works": {
+    "eyebrow": "WORKS",
+    "heading": "実績",
+    "linkLabel": "詳しく見る",
+    "items": {
+      "award": {
+        "title": "全日本合唱コンクール 大学ユースの部 金賞",
+        "description": "関西学院グリークラブにてパートリーダー・情報システム部門長を務め、2025年度全日本合唱コンクール大学ユースの部で金賞を受賞しました。",
+        "imageAlt": "受賞時の集合写真"
+      },
+      "expo-pr": {
+        "title": "大阪万博出演 PR動画制作（クロアチア大使館依頼）",
+        "description": "関西学院グリークラブの情報システム部門長として、クロアチア大使館からの依頼により大阪万博出演のPR動画を制作しました。",
+        "imageAlt": "PR動画撮影時、歌唱している様子",
+        "linkText": "PR動画の投稿を見る"
+      },
+      "youtube": {
+        "title": "関西学院グリークラブ・新月会 公式YouTubeチャンネル運営",
+        "description": "関西学院グリークラブおよび新月会の公式YouTubeチャンネルの企画・運営・動画公開を担当しています。",
+        "imageAlt": "YouTubeチャンネル運営イメージ"
+      },
+      "attendance-system": {
+        "title": "個別指導塾向け 勤怠管理・生徒管理システム開発",
+        "description": "個別指導塾向けに勤怠管理・生徒管理システムを開発し、現在も保守運用を担当しています。下のリンクからUIデモを操作できます（ダミーデータのみ、実データには一切接続していません）。",
+        "imageAlt": "システム開発イメージ",
+        "linkText": "デモを操作する"
+      }
+    }
+  },
+  "skills": {
+    "eyebrow": "SKILLS",
+    "heading": "スキル",
+    "programmingHeading": "プログラミング",
+    "creativeHeading": "クリエイティブ制作",
+    "creativeItems": [
+      "Adobe Premiere Pro",
+      "Adobe After Effects",
+      "Adobe Illustrator",
+      "Steinberg Cubase"
+    ],
+    "choralHeading": "合唱",
+    "choralItems": [
+      "合唱（男声合唱）トップテナー",
+      "バーバーショップスタイル ｜ リード",
+      "合唱指揮"
+    ]
+  },
+  "contact": {
+    "eyebrow": "CONTACT",
+    "heading": "お問い合わせ",
+    "description": "お仕事のご相談、合唱活動に関するお問い合わせなど、お気軽にご連絡ください。",
+    "nameLabel": "お名前",
+    "namePlaceholder": "山田 太郎",
+    "emailLabel": "メールアドレス",
+    "emailPlaceholder": "you@example.com",
+    "subjectLabel": "件名",
+    "subjectOptions": {
+      "general": "一般的なお問い合わせ",
+      "work": "お仕事のご相談",
+      "choral": "合唱活動について",
+      "other": "その他"
+    },
+    "messageLabel": "メッセージ本文",
+    "messagePlaceholder": "お問い合わせ内容をご記入ください",
+    "submit": "送信する",
+    "submitting": "送信中…",
+    "successTitle": "送信が完了しました",
+    "successBody": "お問い合わせいただきありがとうございます。内容を確認の上、ご返信いたします。",
+    "errorTitle": "送信に失敗しました",
+    "errorBody": "時間をおいて再度お試しいただくか、下記メールアドレスまで直接ご連絡ください。",
+    "rateLimitBody": "送信回数の上限に達しました。しばらく時間をおいて再度お試しください。",
+    "requiredError": "必須項目を入力してください。",
+    "emailInvalid": "正しいメールアドレスを入力してください。"
+  },
+  "footer": {
+    "emailLabel": "メールでのお問い合わせ",
+    "rights": "All rights reserved."
+  }
+}

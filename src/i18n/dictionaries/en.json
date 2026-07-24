@@ -1,0 +1,111 @@
+{
+  "meta": {
+    "title": "Takumi Ishii | Portfolio",
+    "description": "Portfolio of Takumi Ishii — as an engineer and as a choral singer. Software engineering work alongside choral competition results and production credits.",
+    "ogAlt": "Takumi Ishii portfolio"
+  },
+  "nav": {
+    "home": "HOME",
+    "about": "ABOUT",
+    "works": "WORKS",
+    "skills": "SKILLS",
+    "contact": "CONTACT",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "langSwitch": "日本語に切り替え"
+  },
+  "hero": {
+    "name": "Takumi Ishii",
+    "nameEn": "石井拓実",
+    "catchphrase": "As an engineer. As a choral singer.",
+    "scrollHint": "SCROLL"
+  },
+  "about": {
+    "eyebrow": "ABOUT",
+    "heading": "About",
+    "paragraphs": [
+      "Alongside studying computer science at Kwansei Gakuin University, I've thrown myself into choral music as a member of the Kwansei Gakuin Glee Club.",
+      "As an engineer, I design and build web applications, and own business systems end-to-end — from development through ongoing maintenance. As a choral singer, I've served as a part leader and head of the club's IT/systems department, supporting both performance and organizational operations.",
+      "Engineering is built by stacking logic; ensemble singing is built by layering voices. Two crafts that rarely meet on paper — but to me they're the same continuous act: bringing individual strengths together into a single, coherent whole."
+    ],
+    "imageAlt": "Portrait photo of Takumi Ishii"
+  },
+  "works": {
+    "eyebrow": "WORKS",
+    "heading": "Works",
+    "linkLabel": "Learn more",
+    "items": {
+      "award": {
+        "title": "Gold Award, All-Japan Choral Competition — University Youth Division",
+        "description": "As part leader and head of the IT department at Kwansei Gakuin Glee Club, contributed to winning the Gold Award in the University Youth Division of the 2025 All-Japan Choral Competition.",
+        "imageAlt": "Group photo at the award ceremony"
+      },
+      "expo-pr": {
+        "title": "Expo 2025 Osaka PR Video (commissioned by the Embassy of Croatia)",
+        "description": "As head of the IT department at Kwansei Gakuin Glee Club, produced a PR video for the choir's Expo 2025 Osaka appearance, commissioned by the Embassy of Croatia.",
+        "imageAlt": "Photo taken while singing for the PR video",
+        "linkText": "View the announcement post"
+      },
+      "youtube": {
+        "title": "Kwansei Gakuin Glee Club / Shingetsukai Official YouTube Channel",
+        "description": "Plan, run, and publish content for the official YouTube channel of Kwansei Gakuin Glee Club and its alumni chorus, Shingetsukai.",
+        "imageAlt": "YouTube channel management"
+      },
+      "attendance-system": {
+        "title": "Attendance & Student Management System for a Tutoring School",
+        "description": "Developed an attendance-tracking and student-management system for a private tutoring school, and continue to maintain and operate it. Try the interactive UI demo below (dummy data only — never connected to the real system).",
+        "imageAlt": "System development illustration",
+        "linkText": "Try the demo"
+      }
+    }
+  },
+  "skills": {
+    "eyebrow": "SKILLS",
+    "heading": "Skills",
+    "programmingHeading": "Programming",
+    "creativeHeading": "Creative Production",
+    "creativeItems": [
+      "Adobe Premiere Pro",
+      "Adobe After Effects",
+      "Adobe Illustrator",
+      "Steinberg Cubase"
+    ],
+    "choralHeading": "Choral",
+    "choralItems": [
+      "Choral (Male Choir) — Top Tenor",
+      "Barbershop Style — Lead",
+      "Choral Conducting"
+    ]
+  },
+  "contact": {
+    "eyebrow": "CONTACT",
+    "heading": "Contact",
+    "description": "Feel free to reach out about work opportunities, choral collaborations, or anything else.",
+    "nameLabel": "Name",
+    "namePlaceholder": "Jane Doe",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "subjectLabel": "Subject",
+    "subjectOptions": {
+      "general": "General inquiry",
+      "work": "Work opportunity",
+      "choral": "About choral activities",
+      "other": "Other"
+    },
+    "messageLabel": "Message",
+    "messagePlaceholder": "Write your message here",
+    "submit": "Send message",
+    "submitting": "Sending…",
+    "successTitle": "Message sent",
+    "successBody": "Thanks for reaching out — I'll get back to you after reviewing your message.",
+    "errorTitle": "Something went wrong",
+    "errorBody": "Please try again shortly, or email the address below directly.",
+    "rateLimitBody": "You've hit the sending limit. Please try again a little later.",
+    "requiredError": "Please fill in all required fields.",
+    "emailInvalid": "Please enter a valid email address."
+  },
+  "footer": {
+    "emailLabel": "Email",
+    "rights": "All rights reserved."
+  }
+}
