@@ -22,7 +22,7 @@ export const works: WorkEntry[] = [
   },
   {
     id: "attendance-system",
-    image: "/images/works/attendance-system.jpg",
+    image: "/images/works/attendance-system-v2.jpg",
     link: "/demo/attendance-system",
   },
 ];
