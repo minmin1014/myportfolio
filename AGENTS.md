@@ -15,7 +15,10 @@ to be told each time.
   giant commit.
 - **Commit directly to `main`.** That is this repo's established workflow; do not
   create feature branches unless explicitly asked.
-- **Do NOT `git push`.** There is no remote and the owner manages any remote/push
-  themselves. Never add a remote or push unless explicitly instructed.
+- **Push to GitHub after committing.** The remote `origin` is
+  `https://github.com/minmin1014/myportfolio.git`. Once a logical unit of work is
+  committed on `main`, `git push` it so GitHub stays in sync — no need to ask each
+  time. If a push fails on authentication, stop and tell the owner rather than
+  reconfiguring credentials.
 - End every commit message with:
   `Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>`
