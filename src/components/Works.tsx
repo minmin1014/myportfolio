@@ -16,8 +16,15 @@ import Watermark from "./Watermark";
 
 const ROTATE_MS = 5000;
 
-// Staggered vertical offsets (lg+) to break the grid into a scattered layout.
-const OFFSETS = ["lg:mt-24", "lg:mt-48", "lg:mt-8", "lg:mt-40"];
+// Even staircase (lg+): the first card sits lowest (bottom-left) and each
+// following card steps up by an equal amount to the last (top-right). Panels
+// are the same size and butt together horizontally, so the leftover triangles
+// — empty at the top-left and bottom-right — reveal the background photo.
+// Even 9rem rise between adjacent cards (27 → 18 → 9 → 0). Larger so the
+// bottom-left card drops toward the section's bottom-left corner and the
+// top-right card climbs toward its top-right corner, opening big background
+// triangles at the top-left and bottom-right.
+const OFFSETS = ["lg:mt-[27rem]", "lg:mt-[18rem]", "lg:mt-[9rem]", "lg:mt-0"];
 
 export default function Works({ dict }: { dict: Dictionary }) {
   const [active, setActive] = useState(0);
@@ -158,15 +165,17 @@ export default function Works({ dict }: { dict: Dictionary }) {
             </div>
           ))}
         </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-bg)]/85 via-[var(--color-bg)]/70 to-[var(--color-bg)]/95" />
-        <div className="absolute inset-0 bg-[var(--color-bg)]/30" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-bg)]/80 via-[var(--color-bg)]/55 to-[var(--color-bg)]/85" />
+        <div className="absolute inset-0 bg-[var(--color-bg)]/15" />
       </div>
 
-      <div className="relative mx-auto max-w-[100rem] px-5 py-28 sm:px-10 sm:py-36 lg:px-16">
+      <div className="relative mx-auto max-w-[100rem] px-5 pt-28 pb-12 sm:px-10 sm:pt-36 sm:pb-16 lg:px-16">
         {/* Giant watermark echoing the section title */}
         <Watermark text="WORKS" />
 
         <div className="relative">
+          {/* Title block, kept above the raised right-column cards */}
+          <div className="pointer-events-none relative z-20">
           <Reveal>
             <p className="text-xs font-medium tracking-[0.3em] text-[var(--color-accent)]">
               {dict.works.eyebrow}
@@ -193,12 +202,13 @@ export default function Works({ dict }: { dict: Dictionary }) {
               </motion.p>
             </AnimatePresence>
           </div>
+          </div>
 
           {/* Scattered thumbnails — a swipe carousel on phones, a grid from sm up */}
           <div
             ref={trackRef}
             onScroll={handleTrackScroll}
-            className="mt-16 -mx-5 flex items-start snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-5 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-x-10 sm:gap-y-12 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4 lg:gap-x-14"
+            className="mt-16 -mx-5 flex items-stretch snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-5 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:items-start sm:gap-0 sm:overflow-visible sm:px-0 sm:pb-0 lg:-mt-[18rem] lg:grid-cols-4"
           >
             {works.map((work, i) => {
               const copy = dict.works.items[work.id];
@@ -223,38 +233,48 @@ export default function Works({ dict }: { dict: Dictionary }) {
                     onBlur={() => setPaused(false)}
                     onClick={() => setOpenIndex(i)}
                     aria-label={copy.title}
-                    className="group block w-full text-left focus:outline-none"
+                    className="group block h-full w-full focus:outline-none"
                   >
+                    {/* Solid panels butt together with no gap; the vertical
+                        stagger is what lets the backdrop show through the seams. */}
                     <div
-                      className={`relative aspect-video w-full overflow-hidden rounded-xl border transition-all duration-500 ease-[var(--ease-fluid)] ${
+                      className={`relative flex h-[22rem] flex-col bg-[var(--color-bg-card)] p-5 text-center transition-all duration-500 ease-[var(--ease-fluid)] sm:h-[26rem] lg:h-[30rem] ${
                         isActive
-                          ? "border-[var(--color-accent)] shadow-[0_0_0_1px_var(--color-accent),0_16px_40px_-16px_rgba(0,0,0,0.8)]"
-                          : "border-[var(--color-border)] opacity-70 group-hover:opacity-100"
+                          ? "z-10 scale-[1.015] shadow-[0_0_0_2px_var(--color-accent),0_28px_60px_-24px_rgba(0,0,0,0.9)]"
+                          : ""
                       }`}
                     >
-                      <Image
-                        src={work.image}
-                        alt={copy.imageAlt}
-                        fill
-                        sizes="(min-width: 1024px) 22vw, 45vw"
-                        className="object-cover transition-transform duration-700 ease-[var(--ease-fluid)] group-hover:scale-105"
-                      />
+                      <div className="flex flex-1 flex-col items-center justify-center gap-5">
+                        <div className="relative aspect-video w-full overflow-hidden rounded-md">
+                          <Image
+                            src={work.image}
+                            alt={copy.imageAlt}
+                            fill
+                            sizes="(min-width: 1024px) 22vw, 45vw"
+                            className="object-cover transition-transform duration-700 ease-[var(--ease-fluid)] group-hover:scale-105"
+                          />
+                        </div>
+                        <h3 className="px-1 text-sm font-medium leading-snug text-[var(--color-text)] transition-colors group-hover:text-[var(--color-accent)]">
+                          {copy.title}
+                        </h3>
+                      </div>
+                      {/* Vertical-rule framed MORE, echoing the reference layout */}
+                      <div className="flex flex-col items-center pt-6">
+                        <span aria-hidden className="h-4 w-px bg-[var(--color-border-strong)]" />
+                        <span className="my-2.5 text-[0.7rem] font-medium tracking-[0.25em] text-[var(--color-text-faint)] transition-colors group-hover:text-[var(--color-accent)]">
+                          MORE
+                        </span>
+                        <span aria-hidden className="h-4 w-px bg-[var(--color-border-strong)]" />
+                      </div>
                     </div>
-                    <h3 className="mt-4 text-sm font-medium leading-snug text-[var(--color-text)] transition-colors group-hover:text-[var(--color-accent)]">
-                      {copy.title}
-                    </h3>
-                    <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium tracking-wide text-[var(--color-text-faint)] transition-colors group-hover:text-[var(--color-accent)]">
-                      MORE
-                      <span aria-hidden>+</span>
-                    </span>
                   </button>
                 </Reveal>
               );
             })}
           </div>
 
-          {/* Dots indicator */}
-          <div className="mt-14 flex items-center gap-3">
+          {/* Dots indicator — only meaningful for the mobile swipe carousel */}
+          <div className="mt-10 flex items-center gap-3 sm:hidden">
             {works.map((work, i) => (
               <button
                 key={work.id}
