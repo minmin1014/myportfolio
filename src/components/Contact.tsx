@@ -74,9 +74,9 @@ export default function Contact({ dict }: { dict: Dictionary }) {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden border-t border-[var(--color-border)] bg-[var(--color-bg-elevated)] px-5 py-28 sm:px-10 sm:py-36 lg:px-16"
+      className="relative overflow-hidden border-t border-[var(--color-border)] bg-[var(--color-bg-elevated)] py-28 sm:py-36"
     >
-      <div className="relative mx-auto max-w-[100rem]">
+      <div className="relative mx-auto max-w-[100rem] px-5 sm:px-10 lg:px-16">
         <Watermark text={dict.contact.eyebrow} />
         <div className="relative grid gap-14 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] lg:items-start lg:gap-16">
           <div className="max-w-xl">

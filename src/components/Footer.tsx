@@ -12,8 +12,8 @@ export default function Footer({
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-[var(--color-border)] bg-[var(--color-bg)] px-5 py-12 sm:px-8">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 text-center sm:flex-row sm:justify-between sm:text-left">
+    <footer className="border-t border-[var(--color-border)] bg-[var(--color-bg)] py-12">
+      <div className="mx-auto flex max-w-[100rem] flex-col items-center gap-4 px-5 text-center sm:flex-row sm:justify-between sm:px-10 sm:text-left lg:px-16">
         <p className="text-sm text-[var(--color-text-faint)]">
           &copy; {year} {locale === "ja" ? "石井拓実" : "Takumi Ishii"}. {dict.footer.rights}
         </p>
