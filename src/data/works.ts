@@ -19,6 +19,7 @@ export const works: WorkEntry[] = [
   {
     id: "youtube",
     image: "/images/works/youtube.jpg",
+    link: "https://www.youtube.com/@KwanseiGakuin_GleeClub",
   },
   {
     id: "attendance-system",
