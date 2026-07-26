@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Noto_Sans_JP } from "next/font/google";
+import { Inter, Noto_Sans_JP, Yuji_Syuku } from "next/font/google";
 import { notFound } from "next/navigation";
 import "../globals.css";
 import { locales, defaultLocale, isLocale, type Locale } from "@/i18n/config";
@@ -17,6 +17,14 @@ const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-noto-jp",
+  display: "swap",
+});
+
+// Brush-calligraphy Japanese font — used only for the poetic closing in About.
+const yujiSyuku = Yuji_Syuku({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-brush",
   display: "swap",
 });
 
@@ -87,7 +95,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${inter.variable} ${notoSansJP.variable} h-full`}
+      className={`${inter.variable} ${notoSansJP.variable} ${yujiSyuku.variable} h-full`}
     >
       <body className="min-h-full flex flex-col bg-[var(--color-bg)] text-[var(--color-text)]">
         <Header dict={dict} locale={locale} />
