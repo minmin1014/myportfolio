@@ -51,23 +51,23 @@
     "items": {
       "award": {
         "title": "Gold Award, All-Japan Choral Competition — University Youth Division",
-        "description": "As part leader and head of the IT department at Kwansei Gakuin Glee Club, contributed to winning the Gold Award in the University Youth Division of the 2025 All-Japan Choral Competition.",
+        "description": "As part leader and head of the IT department at Kwansei Gakuin Glee Club, contributed to winning the Gold Award in the University Youth Division of the 2025 All-Japan Choral Competition. As head of IT, I digitized attendance tracking, sheet-music sharing, and rehearsal records that had previously been handled on paper or by word of mouth — driving the club's internal DX and building an environment that made the most of our limited rehearsal time. Beyond performing as a singer, I supported the whole ensemble from behind the scenes by improving practice efficiency, helping earn the Gold Award.",
         "imageAlt": "Group photo at the award ceremony"
       },
       "expo-pr": {
         "title": "Expo 2025 Osaka PR Video (commissioned by the Embassy of Croatia)",
-        "description": "As head of the IT department at Kwansei Gakuin Glee Club, produced a PR video for the choir's Expo 2025 Osaka appearance, commissioned by the Embassy of Croatia.",
+        "description": "Commissioned by the Embassy of Croatia, I produced a PR video introducing Kwansei Gakuin Glee Club for its appearance at the Croatia National Day of Expo 2025 Osaka. I created two versions — a Japanese edition for domestic audiences and an English edition for international visitors and viewers. From audio editing in Steinberg Cubase to video editing in Adobe Premiere Pro and motion graphics in After Effects, I handled the entire process from concept to final cut, putting my creative production skills to work.",
         "imageAlt": "Photo taken while singing for the PR video",
         "linkText": "View the announcement post"
       },
       "youtube": {
         "title": "Kwansei Gakuin Glee Club / Shingetsukai Official YouTube Channel",
-        "description": "Plan, run, and publish content for the official YouTube channel of Kwansei Gakuin Glee Club and its alumni chorus, Shingetsukai.",
+        "description": "I plan and run the official YouTube channel of Kwansei Gakuin Glee Club and its alumni chorus, Shingetsukai. As the club's PR lead, I handle everything from content planning and filming to publishing and channel design — aiming not only to reach existing fans but to win new audiences and build recognition both in Japan and abroad. Thinking hard about how to convey the identity of a performing ensemble, I've built practical experience in branding and public relations.",
         "imageAlt": "YouTube channel management"
       },
       "attendance-system": {
         "title": "Attendance & Student Management System for a Tutoring School",
-        "description": "Developed an attendance-tracking and student-management system for a private tutoring school, and continue to maintain and operate it. Try the interactive UI demo below (dummy data only — never connected to the real system).",
+        "description": "At the private tutoring school where I work part-time, I rebuilt the previously paper-based student management and instructor attendance tracking as a web application. By eliminating manual tallying and transcription, I achieved on-the-ground DX and greater operational efficiency, and I now continue to operate and maintain it as an officially sanctioned tool of the head office. Having driven everything myself — from planning and design to development and operation — it's an example of real-world, production-level development skill. Try the interactive UI demo below (dummy data only — never connected to the real system).",
         "imageAlt": "System development illustration",
         "linkText": "Try the demo"
       }
