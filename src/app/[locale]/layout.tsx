@@ -92,12 +92,29 @@ export default async function LocaleLayout({
   const locale = rawLocale as Locale;
   const dict = await getDictionary(locale);
 
+  // Person structured data — tells Google that this site *is* the entity
+  // "石井拓実 / Takumi Ishii", which is what a name search has to match.
+  const personJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: dict.hero.name,
+    alternateName: locale === "ja" ? dict.hero.nameEn : "石井拓実",
+    url: `${SITE_URL}/${locale}`,
+    image: `${SITE_URL}/images/about/profile-v2.jpg`,
+    description: dict.meta.description,
+    knowsLanguage: ["ja", "en"],
+  };
+
   return (
     <html
       lang={locale}
       className={`${inter.variable} ${notoSansJP.variable} ${yujiSyuku.variable} h-full`}
     >
       <body className="min-h-full flex flex-col bg-[var(--color-bg)] text-[var(--color-text)]">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
         <Header dict={dict} locale={locale} />
         <main className="flex-1">{children}</main>
         <Footer dict={dict} locale={locale} />
