@@ -17,6 +17,11 @@ HEALTH_URL="http://localhost:${PORT}/ja"
 
 cd "$(dirname "$0")"
 
+# Use the official Node binary, not the Ubuntu package at /usr/bin/node, which
+# lags on security fixes. `pm2 restart --update-env` below copies this PATH into
+# the app, so `next start` resolves `node` here too.
+export PATH="$HOME/.local/node22/bin:$PATH"
+
 log()  { printf '\033[1;34m▶ %s\033[0m\n' "$*"; }
 fail() { printf '\033[1;31m✗ %s\033[0m\n' "$*" >&2; exit 1; }
 
